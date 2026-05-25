@@ -91,12 +91,54 @@ curl -fsSL https://raw.githubusercontent.com/yli769227-jpg/awesome-claude-code-c
 
 ---
 
+## 配套工具
+
+8 条铁律负责教你"AI 别这么干",下面这俩负责教你**知道自己花了多少钱**和**配置里有没有雷**:
+
+<table>
+<tr>
+<td width="50%">
+
+### 🔥 [burnrate](https://github.com/yli769227-jpg/burnrate)
+
+> **你今天用 Claude Code 烧了多少钱?**
+
+99% 的人答不上来。`burnrate` 直接读 `~/.claude/projects/**/*.jsonl`,告诉你今日 / 7 日 / 实时三个数字 —— 含模型分布、缓存命中、月度估算。
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yli769227-jpg/burnrate/main/install.sh | bash
+```
+
+零依赖 · 永不联网 · 单文件 Python · 500 行可自己 review
+
+</td>
+<td width="50%">
+
+### 🔍 [mcp-audit](https://github.com/yli769227-jpg/mcp-audit)
+
+> **你的 MCP 配置里藏着多少坑?**
+
+只读、离线、paranoid。审 Claude Code MCP 配置:硬编码 secret、僵尸 server、过宽权限。中英双语 README。
+
+```bash
+pipx install mcp-audit
+mcp-audit ~/.claude/mcp.json
+```
+
+零联网 · 只扫不改 · 给你清单不给你建议
+
+</td>
+</tr>
+</table>
+
+---
+
 ## 路线图
 
 - [x] 8 个核心 discipline + 真实反例
+- [x] 配套工具 [`burnrate`](https://github.com/yli769227-jpg/burnrate) (烧钱可视化) + [`mcp-audit`](https://github.com/yli769227-jpg/mcp-audit) (MCP 配置审计)
 - [ ] 加入更多中文社区贡献的真实反例(欢迎 PR,见 [CONTRIBUTING.md](./CONTRIBUTING.md))
 - [ ] 视频版:每个 discipline 拍 1 分钟"我是怎么被坑的"短片
-- [ ] 配套 CLI 工具 `mcp-audit`(独立仓库,扫 Claude Code MCP 配置)
 
 ---
 
