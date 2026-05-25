@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-8_disciplines-blue.svg)](./skills/)
+[![install](https://img.shields.io/badge/install-curl_%7C_bash-green.svg)](./install.sh)
 [![中文](https://img.shields.io/badge/lang-中文-red.svg)](README.md)
 
 ---
@@ -53,20 +54,34 @@
 
 **2. 如何用这些 skill**:
 
-把整个 `skills/` 目录拷到 `~/.claude/skills/`,Claude Code 会自动读 frontmatter 的 `description` 决定何时触发。
+一行装:
 
 ```bash
-git clone https://github.com/yli769227-jpg/awesome-claude-code-cn.git
-cp -r awesome-claude-code-cn/skills/discipline-* ~/.claude/skills/
+curl -fsSL https://raw.githubusercontent.com/yli769227-jpg/awesome-claude-code-cn/main/install.sh | bash
 ```
 
-然后在 `~/.claude/CLAUDE.md` 加几行触发说明:
+脚本会做三件事:
+1. 把 8 个 `discipline-*` 拷到 `~/.claude/skills/`(已存在则跳过,用 `--force` 覆盖)
+2. 在 `~/.claude/CLAUDE.md` 末尾**幂等**注入 8 行触发说明(带 `<!-- awesome-claude-code-cn:start v1 -->` 标记块,重跑只会原地更新,不会重复追加)
+3. 打印新装 / 跳过 / 覆盖三档统计
 
-```markdown
-当你即将做非平凡的代码变更前 → 加载 ~/.claude/skills/discipline-ask-before-act/SKILL.md
-当你即将声明任务完成 → 加载 ~/.claude/skills/discipline-test-is-truth/SKILL.md
-...
+可选参数:
+
+```bash
+# 看脚本要做什么但不真写
+curl -fsSL https://raw.githubusercontent.com/yli769227-jpg/awesome-claude-code-cn/main/install.sh | bash -s -- --dry-run
+
+# 覆盖已存在的 skill 目录(本地有改的话会被冲掉,慎用)
+curl -fsSL https://raw.githubusercontent.com/yli769227-jpg/awesome-claude-code-cn/main/install.sh | bash -s -- --force
 ```
+
+干净卸载(精准移除 8 个 skill + CLAUDE.md 里的标记块,不动其他内容):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yli769227-jpg/awesome-claude-code-cn/main/uninstall.sh | bash
+```
+
+> 不想跑脚本? 也可以 `git clone` 后手动 `cp -r skills/discipline-* ~/.claude/skills/`,再把 [`install.sh`](./install.sh) 里那段触发说明手贴到 `~/.claude/CLAUDE.md`。
 
 ---
 
